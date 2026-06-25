@@ -15,13 +15,20 @@ abrir desde este enlace:
 - `index.html`: pagina principal del simulador.
 - `styles.css`: estilos visuales.
 - `script.js`: logica de la simulacion.
-- `guion_exposicion.md`: guia para hablar durante la presentacion.
-- `preguntas_profesor.md`: posibles preguntas y respuestas.
+- `docs/guion_exposicion.md`: guia para hablar durante la presentacion.
+- `docs/resumen_para_estudiar.md`: resumen rapido para repasar.
+- `docs/preguntas_profesor.md`: posibles preguntas y respuestas.
 - `plan_2_horas.md`: orden sugerido para estudiar.
 
 ## Como abrirlo
 
 Abrir `index.html` con Chrome, Edge o Firefox.
+
+## Material de estudio
+
+- [Guion de exposicion](docs/guion_exposicion.md)
+- [Resumen para estudiar](docs/resumen_para_estudiar.md)
+- [Preguntas del profesor](docs/preguntas_profesor.md)
 
 ## Que incluye
 
