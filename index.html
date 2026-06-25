@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Modelo de Tiro Oblicuo - Cinemática</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 24px; background: #f7f7f7; }
+    h1 { margin-bottom: 4px; }
+    .container { display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; }
+    canvas { background: white; border: 1px solid #aaa; border-radius: 8px; }
+    .panel { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 16px; max-width: 430px; }
+    label { display: block; margin-top: 12px; }
+    input[type="range"] { width: 100%; }
+    .formula { font-family: 'Times New Roman', serif; font-size: 18px; margin: 8px 0; }
+  </style>
+</head>
+<body>
+  <h1>Modelo de Tiro Oblicuo</h1>
+  <p>Simulación para explicar posición, desplazamiento, trayectoria, velocidad, aceleración e independencia de movimientos.</p>
+
+  <div class="container">
+    <canvas id="canvas" width="800" height="500"></canvas>
+
+    <div class="panel">
+      <h2>Controles</h2>
+
+      <label>Velocidad inicial v₀: <span id="v0Val"></span> m/s</label>
+      <input id="v0" type="range" min="5" max="40" value="20" step="1">
+
+      <label>Ángulo θ: <span id="thetaVal"></span>°</label>
+      <input id="theta" type="range" min="5" max="80" value="45" step="1">
+
+      <label>Tiempo t: <span id="tVal"></span> s</label>
+      <input id="time" type="range" min="0" max="1" value="0" step="0.01">
+
+      <h2>Ecuaciones</h2>
+      <div class="formula">x(t) = v₀ cos(θ) · t</div>
+      <div class="formula">y(t) = v₀ sen(θ) · t − ½ g t²</div>
+      <div class="formula">vₓ(t) = v₀ cos(θ)</div>
+      <div class="formula">vᵧ(t) = v₀ sen(θ) − g t</div>
+
+      <h2>Valores actuales</h2>
+      <p id="values"></p>
+
+      <h2>Para exponer</h2>
+      <p>
+        El punto representa la partícula. El vector azul es la posición r(t).
+        El vector naranja es la velocidad v(t), tangente a la trayectoria.
+        La aceleración es constante y apunta hacia abajo por la gravedad.
+      </p>
+    </div>
+  </div>
+
+<script>
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+const v0Slider = document.getElementById("v0");
+const thetaSlider = document.getElementById("theta");
+const timeSlider = document.getElementById("time");
+
+const v0Val = document.getElementById("v0Val");
+const thetaVal = document.getElementById("thetaVal");
+const tVal = document.getElementById("tVal");
+const values = document.getElementById("values");
+
+const g = 9.8;
+const margin = 60;
+
+function degToRad(deg) {
+  return deg * Math.PI / 180;
+}
+
+function arrow(x1, y1, x2, y2, label) {
+  const headlen = 10;
+  const angle = Math.atan2(y2-y1, x2-x1);
+
+  ctx.beginPath();
+  ctx.moveTo(x1, y1);
+  ctx.lineTo(x2, y2);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(x2, y2);
+  ctx.lineTo(x2 - headlen * Math.cos(angle - Math.PI / 6), y2 - headlen * Math.sin(angle - Math.PI / 6));
+  ctx.lineTo(x2 - headlen * Math.cos(angle + Math.PI / 6), y2 - headlen * Math.sin(angle + Math.PI / 6));
+  ctx.lineTo(x2, y2);
+  ctx.fill();
+
+  if (label) {
+    ctx.fillText(label, x2 + 6, y2 - 6);
+  }
+}
+
+function draw() {
+  const v0 = Number(v0Slider.value);
+  const thetaDeg = Number(thetaSlider.value);
+  const theta = degToRad(thetaDeg);
+
+  const tvuelo = 2 * v0 * Math.sin(theta) / g;
+  timeSlider.max = tvuelo.toFixed(2);
+
+  let t = Number(timeSlider.value);
+  if (t > tvuelo) {
+    t = tvuelo;
+    timeSlider.value = t;
+  }
+
+  const vx = v0 * Math.cos(theta);
+  const vy = v0 * Math.sin(theta) - g * t;
+
+  const x = vx * t;
+  const y = v0 * Math.sin(theta) * t - 0.5 * g * t * t;
+
+  const alcance = v0 * v0 * Math.sin(2 * theta) / g;
+  const alturaMax = Math.pow(v0 * Math.sin(theta), 2) / (2 * g);
+
+  const scaleX = (canvas.width - 2 * margin) / Math.max(alcance, 1);
+  const scaleY = (canvas.height - 2 * margin) / Math.max(alturaMax * 1.3, 1);
+  const scale = Math.min(scaleX, scaleY);
+
+  const originX = margin;
+  const originY = canvas.height - margin;
+
+  function sx(xm) { return originX + xm * scale; }
+  function sy(ym) { return originY - ym * scale; }
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  ctx.strokeStyle = "#333";
+  ctx.fillStyle = "#333";
+  ctx.lineWidth = 2;
+  arrow(originX, originY, canvas.width - 30, originY, "x");
+  arrow(originX, originY, originX, 30, "y");
+
+  ctx.beginPath();
+  ctx.strokeStyle = "#444";
+  ctx.lineWidth = 2;
+  for (let i = 0; i <= 200; i++) {
+    const tt = tvuelo * i / 200;
+    const xx = v0 * Math.cos(theta) * tt;
+    const yy = v0 * Math.sin(theta) * tt - 0.5 * g * tt * tt;
+    if (i === 0) ctx.moveTo(sx(xx), sy(yy));
+    else ctx.lineTo(sx(xx), sy(yy));
+  }
+  ctx.stroke();
+
+  const px = sx(x);
+  const py = sy(y);
+
+  ctx.strokeStyle = "#1f77b4";
+  ctx.fillStyle = "#1f77b4";
+  ctx.lineWidth = 3;
+  arrow(originX, originY, px, py, "r(t)");
+
+  const velScale = 0.45 * scale;
+  ctx.strokeStyle = "#ff7f0e";
+  ctx.fillStyle = "#ff7f0e";
+  ctx.lineWidth = 3;
+  arrow(px, py, px + vx * velScale, py - vy * velScale, "v(t)");
+
+  ctx.strokeStyle = "#2ca02c";
+  ctx.fillStyle = "#2ca02c";
+  ctx.lineWidth = 3;
+  arrow(px, py, px, py + 50, "a = g");
+
+  ctx.beginPath();
+  ctx.fillStyle = "#000";
+  ctx.arc(px, py, 6, 0, 2*Math.PI);
+  ctx.fill();
+  ctx.fillText("P(t)", px + 8, py + 18);
+
+  ctx.fillStyle = "#666";
+  ctx.fillText("Origen", originX - 15, originY + 20);
+  ctx.fillText("Trayectoria parabólica", sx(alcance*0.45), sy(alturaMax*0.95));
+
+  v0Val.textContent = v0.toFixed(0);
+  thetaVal.textContent = thetaDeg.toFixed(0);
+  tVal.textContent = t.toFixed(2);
+
+  values.innerHTML =
+    "t<sub>vuelo</sub> = " + tvuelo.toFixed(2) + " s<br>" +
+    "x(t) = " + x.toFixed(2) + " m<br>" +
+    "y(t) = " + y.toFixed(2) + " m<br>" +
+    "vₓ(t) = " + vx.toFixed(2) + " m/s<br>" +
+    "vᵧ(t) = " + vy.toFixed(2) + " m/s<br>" +
+    "alcance = " + alcance.toFixed(2) + " m<br>" +
+    "altura máxima = " + alturaMax.toFixed(2) + " m";
+}
+
+[v0Slider, thetaSlider, timeSlider].forEach(el => el.addEventListener("input", draw));
+draw();
+</script>
+</body>
+</html>
