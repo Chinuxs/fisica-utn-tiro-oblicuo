@@ -18,7 +18,6 @@ abrir desde este enlace:
 - `docs/guion_exposicion.md`: guia para hablar durante la presentacion.
 - `docs/resumen_para_estudiar.md`: resumen rapido para repasar.
 - `docs/preguntas_profesor.md`: posibles preguntas y respuestas.
-- `plan_2_horas.md`: orden sugerido para estudiar.
 
 ## Como abrirlo
 
