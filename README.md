@@ -25,9 +25,11 @@ Abrir `index.html` con Chrome, Edge o Firefox.
 
 ## Material de estudio
 
+- [Indice de apuntes de tiro oblicuo](docs/README.md)
 - [Guion de exposicion](docs/guion_exposicion.md)
 - [Resumen para estudiar](docs/resumen_para_estudiar.md)
 - [Preguntas del profesor](docs/preguntas_profesor.md)
+- [Apunte de movimiento circular](MCUV/README.md)
 
 ## Que incluye
 
@@ -42,6 +44,11 @@ Abrir `index.html` con Chrome, Edge o Firefox.
   - velocidad
   - aceleracion
   - principio de independencia de movimientos
+
+## Otras carpetas
+
+- `docs/`: material de estudio de tiro oblicuo.
+- `MCUV/`: apunte aparte de movimiento circular.
 
 ## Publicacion en GitHub Pages
 
