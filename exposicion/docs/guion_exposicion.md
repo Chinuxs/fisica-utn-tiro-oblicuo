@@ -71,7 +71,7 @@ En el tiro oblicuo ideal la trayectoria tiene forma parabolica.
 
 ---
 
-## ↔️ Desplazamiento
+## ↔️ Desplazamiento - César
 
 El desplazamiento es el vector que une la posicion inicial con la posicion
 final.
@@ -87,7 +87,7 @@ unicamente del punto inicial y del punto final.
 
 ---
 
-## 📏 Camino recorrido
+## 📏 Camino recorrido - Santi
 
 El camino recorrido es la longitud total de la trayectoria.
 
@@ -100,7 +100,7 @@ Generalmente no coincide con el modulo del desplazamiento.
 
 ---
 
-## ⚡ Velocidad
+## ⚡ Velocidad - Lucía
 
 Activamos el vector velocidad.
 
@@ -121,7 +121,7 @@ vertical cambia debido a la gravedad.
 
 ---
 
-## ⬇️ Aceleracion
+## ⬇️ Aceleracion - César
 
 Activamos la aceleracion.
 
@@ -137,7 +137,7 @@ constante.
 
 ---
 
-## 🔀 Independencia de los movimientos
+## 🔀 Independencia de los movimientos - Santi
 
 Una de las ideas mas importantes del tiro oblicuo es el principio de
 independencia de los movimientos.
@@ -154,7 +154,7 @@ La combinacion de ambos movimientos genera la trayectoria parabolica.
 
 ---
 
-## ✅ Cierre
+## ✅ Cierre - Lucía
 
 Con este simulador pudimos visualizar los principales conceptos de Cinematica:
 
