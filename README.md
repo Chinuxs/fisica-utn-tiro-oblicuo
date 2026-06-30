@@ -6,6 +6,12 @@ Este repositorio está organizado en dos áreas claras:
   simulador de tiro oblicuo.
 - `estudio/`: material de apoyo para parciales y repaso de Física I.
 
+## Participantes
+
+- Lucía López
+- Santi Fox
+- César Romero
+
 ## Enlaces rápidos
 
 - [exposicion/README.md](exposicion/README.md)
