@@ -2,6 +2,12 @@
 
 Este directorio contiene el material y el simulador para preparar la exposición de Cinemática.
 
+## Participantes
+
+- Participante 1: Lucía López
+- Participante 2: Santi Fox
+- Participante 3: César Romero
+
 ## Abrir simulador
 
 Cuando GitHub Pages esté activado en este repositorio, el simulador se podrá abrir desde este enlace:

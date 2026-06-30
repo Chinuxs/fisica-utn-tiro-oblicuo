@@ -1,6 +1,12 @@
 # Guion de exposicion - Cinematica mediante un tiro oblicuo
 
-## 🎯 Apertura
+## Participantes
+
+- Participante 1: Lucía López
+- Participante 2: Santi Fox
+- Participante 3: César Romero
+
+## 🎯 Apertura - César
 
 Buenos dias.
 
@@ -15,7 +21,7 @@ para explicar distintos conceptos fisicos.
 
 ---
 
-## 🧭 Sistema de referencia
+## 🧭 Sistema de referencia - César
 
 Todo movimiento necesita un sistema de referencia.
 
@@ -32,7 +38,7 @@ Todas las posiciones del movimiento se miden respecto de ese origen.
 
 ---
 
-## 📍 Posicion
+## 📍 Posicion - Santi
 
 Activamos el vector posicion.
 
@@ -51,7 +57,7 @@ continuamente.
 
 ---
 
-## 🛣️ Trayectoria
+## 🛣️ Trayectoria - Lucía
 
 Activamos la trayectoria.
 

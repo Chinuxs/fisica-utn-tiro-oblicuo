@@ -3,6 +3,12 @@
 Esta carpeta junta el material pensado para estudiar la exposicion sin leer
 codigo.
 
+## Participantes
+
+- Participante 1: Lucía López
+- Participante 2: Santi Fox
+- Participante 3: César Romero
+
 ## Archivos
 
 - [Guion de exposicion](guion_exposicion.md)
